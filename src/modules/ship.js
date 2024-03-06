@@ -9,7 +9,6 @@ const getShipSize = name => {
     return sizes[name];
 }
 
-
 export default class Ship {
     #name;
 
@@ -33,5 +32,9 @@ export default class Ship {
 
     numberOfHits() {
         return this.#numberOfHits;
+    }
+
+    isSunk() {
+        return (this.#numberOfHits >= this.#length);
     }
 }

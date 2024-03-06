@@ -15,12 +15,23 @@ export default class Ship {
 
     #length;
 
+    #numberOfHits;
+
     constructor(name) {
         this.#name = name;
         this.#length = getShipSize(name);
+        this.#numberOfHits = 0;
     }
 
     length() {
         return this.#length;
+    }
+
+    hit() {
+        this.#numberOfHits += 1;
+    }
+
+    numberOfHits() {
+        return this.#numberOfHits;
     }
 }

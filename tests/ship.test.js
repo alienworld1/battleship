@@ -16,7 +16,7 @@ describe('Tests for ship.js', () => {
     ));
 
     test('Returns correct length of the ship: Cruiser', () => {
-        ship = Ship('Cruiser');
+        ship = new Ship('Cruiser');
         expect(ship.length()).toBe(3);
     });
 

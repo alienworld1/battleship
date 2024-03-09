@@ -1,6 +1,8 @@
 export default class GameBoard {
     #board;
 
+    #numberOfShips = 0;
+
     clear() {
         this.#board = [];
         for (let i = 0; i < 4; i += 1) {
@@ -51,7 +53,12 @@ export default class GameBoard {
                 this.#setShipAtSquare(ship, x, y + i);
             }            
         }
+        this.#numberOfShips += 1;
     }
+
+    isShipPresentAtSquare = square => this.shipAt(square) !== null;
+
+    numberOfShips = () => this.#numberOfShips;
 
 
 }

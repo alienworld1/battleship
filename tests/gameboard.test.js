@@ -16,17 +16,17 @@ describe('Set up before the battle', () => {
     test('Proper placements: Destroyer', () => {
         const newShip = new Ship('Destroyer');
         gameBoard.placeShip(newShip, {x: 2, y: 2}, 'horizontal');
-        expect(gameBoard.shipAt({x: 2, y: 2})).toStrictlyEqual(newShip);
-        expect(gameBoard.shipAt({x: 3, y: 2})).toStrictlyEqual(newShip);
-        expect(gameBoard.shipAt({x: 4, y: 2})).not.toStrictlyEqual(newShip);
+        expect(gameBoard.shipAt({x: 2, y: 2})).toStrictEqual(newShip);
+        expect(gameBoard.shipAt({x: 3, y: 2})).toStrictEqual(newShip);
+        expect(gameBoard.shipAt({x: 4, y: 2})).not.toStrictEqual(newShip);
     });
 
     test('Proper placements: Destroyer (vertical)', () => {
         const newShip = new Ship('Destroyer');
         gameBoard.placeShip(newShip, {x: 2, y: 2}, 'vertical');
-        expect(gameBoard.shipAt({x: 2, y: 2})).toStrictlyEqual(newShip);
-        expect(gameBoard.shipAt({x: 2, y: 3})).toStrictlyEqual(newShip);
-        expect(gameBoard.shipAt({x: 3, y: 2})).not.toStrictlyEqual(newShip);
+        expect(gameBoard.shipAt({x: 2, y: 2})).toStrictEqual(newShip);
+        expect(gameBoard.shipAt({x: 2, y: 3})).toStrictEqual(newShip);
+        expect(gameBoard.shipAt({x: 3, y: 2})).not.toStrictEqual(newShip);
     });
 
     test('Check if a ship is on a square', () => {
@@ -46,6 +46,11 @@ describe('Set up before the battle', () => {
         expect(gameBoard.numberOfShips()).toBe(0);
         gameBoard.placeShip(new Ship('Destroyer'), {x: 2, y: 2}, 'horizontal');
         expect(gameBoard.numberOfShips()).toBe(1);
+    });
+
+    test('Check if a ship can be placed on a particular square', () => {
+        expect(GameBoard.canPlaceShip(2, {x: 0, y: 0}, 'horizontal')).toBeTruthy();
+        expect(GameBoard.canPlaceShip(2, {x: 4, y: 4}, 'horizontal')).toBeFalsy();
     });
 });
 

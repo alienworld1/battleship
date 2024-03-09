@@ -7,10 +7,13 @@ export default class GameBoard {
 
     #attackedSquares;
 
+    #shipList;
+
     clear() {
         this.#board = [];
         this.#missedSquares = [];
         this.#attackedSquares = [];
+        this.#shipList = [];
         for (let i = 0; i < 4; i += 1) {
             const row = [];
             for (let j = 0; j < 4; j += 1) {
@@ -60,6 +63,7 @@ export default class GameBoard {
             }            
         }
         this.#numberOfShips += 1;
+        this.#shipList.push(ship);
     }
 
     isShipPresentAtSquare = square => this.shipAt(square) !== null;
@@ -84,4 +88,5 @@ export default class GameBoard {
 
     attackedSquares = () => this.#attackedSquares;
 
+    allShipsHaveSunk = () => this.#shipList.every(ship => ship.isSunk());
 }

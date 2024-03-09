@@ -3,8 +3,14 @@ export default class GameBoard {
 
     #numberOfShips = 0;
 
+    #missedSquares;
+
+    #attackedSquares;
+
     clear() {
         this.#board = [];
+        this.#missedSquares = [];
+        this.#attackedSquares = [];
         for (let i = 0; i < 4; i += 1) {
             const row = [];
             for (let j = 0; j < 4; j += 1) {
@@ -60,5 +66,18 @@ export default class GameBoard {
 
     numberOfShips = () => this.#numberOfShips;
 
+    // Returns false if the attack misses and returns the ship if the attack hits.
+    receiveAttack(square) {
+        const ship = this.shipAt(square);
+
+        if (!ship) {
+            this.#missedSquares.push(square);
+            return false;
+        }
+
+        ship.hit();
+        this.#attackedSquares.push(square);
+        return ship;
+    }
 
 }

@@ -72,13 +72,13 @@ describe('The action phase', () => {
     test('Keep track of missed hits', () => {
         expect(gameBoard.missedHits()).toHaveLength(0);
         gameBoard.receiveAttack({x: 0, y: 0});
-        expect(gameBoard.missedHits()).toContain({x: 0, y: 0});
+        expect(gameBoard.missedHits()).toContainEqual({x: 0, y: 0});
     });
 
     test('Keep track of attacked squares', () => {
         expect(gameBoard.attackedSquares()).toHaveLength(0);
         gameBoard.receiveAttack({x: 2, y: 3});
-        expect(gameBoard.attackedSquares()).toContain({x: 2, y: 3});        
+        expect(gameBoard.attackedSquares()).toContainEqual({x: 2, y: 3});        
     });
 
     test('Check if all ships have sunk', () => {

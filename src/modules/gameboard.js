@@ -80,4 +80,8 @@ export default class GameBoard {
         return ship;
     }
 
+    missedHits = () => this.#missedSquares;
+
+    attackedSquares = () => this.#attackedSquares;
+
 }

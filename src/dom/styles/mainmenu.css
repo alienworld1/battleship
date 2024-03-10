@@ -1,0 +1,36 @@
+main#main-menu  {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+}
+
+#main-menu h1 {
+    font-family: PressStart, sans-serif;
+    color: #eff6ff;
+    cursor: default;
+}
+
+#main-menu button {
+    padding: 16px;
+    width: 120px;
+    font-size: 1.4rem;
+    background-color: #EBAD25;
+    border: none;
+    border-radius: 10px;
+    font-family: PressStart, sans-serif;
+    cursor: pointer;
+}
+
+#main-menu button:hover {
+    background-color: #4E5A6C;
+    color: #eff6ff;
+}
+
+#main-menu button:active {
+    background-color: #D79B1B;
+    color: black;
+}

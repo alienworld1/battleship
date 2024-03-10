@@ -14,7 +14,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-          title: 'Document',
+          title: 'Battleship',
         }),
         new MiniCssExtractPlugin({
           filename: '[name].css',

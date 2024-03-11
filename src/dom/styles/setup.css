@@ -1,0 +1,11 @@
+h3 {
+    font-family: PressStart;
+    color: #eff6ff;
+}
+
+main#setup-screen {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 24px;
+}

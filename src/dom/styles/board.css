@@ -1,0 +1,13 @@
+.board .square {
+    background-color: #1DACD8;
+    border: 2px solid #efefef;
+}
+
+.board {
+    display: grid;
+    grid-template-rows: repeat(5, 50px);
+    grid-template-columns: repeat(5, 50px);
+    grid-auto-flow: row;
+    gap: 1px;
+}
+

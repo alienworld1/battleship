@@ -66,6 +66,22 @@ export default class GameBoard {
         this.#shipList.push(ship);
     }
 
+    canPlaceShip(shipLength, {x, y}, mode) {
+        if (mode === 'horizontal') {
+            for (let i = 0; i < shipLength; i += 1) {
+                if (!GameBoard.isValidSquare({x: x + i, y})
+                    || this.isShipPresentAtSquare({x: x + i, y})) return false;
+            }
+        }
+        else {
+            for (let i = 0; i < shipLength; i += 1) {
+                if (!GameBoard.isValidSquare({x, y: y + i})
+                    || this.isShipPresentAtSquare({x, y: y + i})) return false;
+            }
+        }
+        return true;
+    }
+
     isShipPresentAtSquare = square => this.shipAt(square) !== null;
 
     numberOfShips = () => this.#numberOfShips;

@@ -1,6 +1,5 @@
 import './styles/setup.css';
 import Board from './board';
-import GameBoard from '../modules/gameboard';
 
 import Ship, { getShipSize } from '../modules/ship';
 import { Human, shipList } from '../game-setup';
@@ -44,7 +43,7 @@ for (let y = 0; y < 10; y += 1) {
         HumanBoard.squares[y][x].addEventListener('click', () => {
             const thisY = y;
             const thisX = x;
-            if (!GameBoard.canPlaceShip(getShipSize(ship), {x: thisX, y: thisY}, 'horizontal')) {
+            if (!Human.gameboard.canPlaceShip(getShipSize(ship), {x: thisX, y: thisY}, 'horizontal')) {
                 return false;
             }
             Human.gameboard.placeShip(new Ship(ship), {x: thisX, y: thisY}, 'horizontal');

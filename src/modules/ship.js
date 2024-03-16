@@ -38,3 +38,5 @@ export default class Ship {
         return (this.#numberOfHits >= this.#length);
     }
 }
+
+export {getShipSize};

@@ -1,6 +1,8 @@
-h3 {
+h3, p {
     font-family: PressStart;
     color: #eff6ff;
+    margin: 12px;
+    text-align: center;
 }
 
 main#setup-screen {
@@ -8,4 +10,8 @@ main#setup-screen {
     align-items: center;
     flex-direction: column;
     gap: 24px;
+}
+
+.board .square.green-backdrop {
+    background-color: greenyellow;
 }

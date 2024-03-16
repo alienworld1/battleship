@@ -14,16 +14,16 @@ export default class GameBoard {
         this.#missedSquares = [];
         this.#attackedSquares = [];
         this.#shipList = [];
-        for (let i = 0; i < 4; i += 1) {
+        for (let i = 0; i < 10; i += 1) {
             const row = [];
-            for (let j = 0; j < 4; j += 1) {
+            for (let j = 0; j < 10; j += 1) {
                 row.push(null);
             }
             this.#board.push(row);
         }
     }
 
-    static isValidSquare = square => (square.x >= 0 && square.x < 5 && square.y >= 0  && square.y < 5);
+    static isValidSquare = square => (square.x >= 0 && square.x < 10 && square.y >= 0  && square.y < 10);
 
     static canPlaceShip(shipLength, {x, y}, mode) {
         if (mode === 'horizontal') {

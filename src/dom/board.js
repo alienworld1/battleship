@@ -12,10 +12,11 @@ export default class Board {
 
         this.#squares = [];
 
-        for (let i = 0; i < 5; i += 1) {
+        for (let i = 0; i < 10; i += 1) {
             const row = [];            
-            for (let j = 0; j < 5; j += 1) {
+            for (let j = 0; j < 10; j += 1) {
                 const square = document.createElement('div');
+                Object.assign(square, {position: {x: j, y: i}});
                 square.classList.add('square');
                 row.push(square);
                 this.#board.appendChild(square);
@@ -25,7 +26,24 @@ export default class Board {
         
     }
 
+    #squareAt = ({x, y}) => this.#squares[y][x];
+
+    editSquare(position, className, toRemove = false) {
+        const square = this.#squareAt(position);
+        if (!toRemove) {
+            square.classList.add(className);
+        }
+        else {
+            square.classList.remove(className);
+        }
+
+    }
+
     get board() {
         return this.#board;
+    }
+
+    get squares() {
+        return this.#squares;
     }
 };

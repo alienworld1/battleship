@@ -1,0 +1,4 @@
+main#game-screen {
+    display: flex;
+    gap: 48px;
+}

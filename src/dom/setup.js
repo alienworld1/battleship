@@ -4,8 +4,9 @@ import Board from './board';
 import Ship, { getShipSize } from '../modules/ship';
 import { Human, shipList } from '../game-setup';
 
-const renderMessage = (shipName, length) => `<h3>Click a square to place a ${shipName} (${length} squares)!</h3>
-    <p>Right click to rotate your ship</p>`;
+const renderMessage = (shipName, length, mode, error='') => `<h3>Click a square to place a ${shipName} (${length} squares)!</h3>
+    <p>Right click to rotate your ship. (Mode: ${mode})</p>
+    <p class="error">${error}</p>`;
 
 const returnNextShip = (() => {
     let count = 0;
@@ -19,11 +20,22 @@ const Setup = document.createElement('main');
 Setup.id = 'setup-screen';
 
 let ship = returnNextShip();
+let mode = 'horizontal';
 
 const label = document.createElement('div');
-label.innerHTML = renderMessage(ship, getShipSize(ship));
+
+const refreshLabel = (error = '') => {
+    label.innerHTML = renderMessage(ship, getShipSize(ship), mode, error);    
+}
 
 const HumanBoard = new Board('human-board');
+HumanBoard.board.addEventListener('contextmenu', event => {
+    event.preventDefault();
+    mode = (mode === 'horizontal')? 'vertical' : 'horizontal';
+    refreshLabel();
+})
+
+refreshLabel();
 
 const renderBoard = (board, gameboard) => {
     for (let y = 0; y < 10; y += 1) {
@@ -43,12 +55,13 @@ for (let y = 0; y < 10; y += 1) {
         HumanBoard.squares[y][x].addEventListener('click', () => {
             const thisY = y;
             const thisX = x;
-            if (!Human.gameboard.canPlaceShip(getShipSize(ship), {x: thisX, y: thisY}, 'horizontal')) {
+            if (!Human.gameboard.canPlaceShip(getShipSize(ship), {x: thisX, y: thisY}, mode)) {
+                refreshLabel('Invalid placement');
                 return false;
             }
-            Human.gameboard.placeShip(new Ship(ship), {x: thisX, y: thisY}, 'horizontal');
+            Human.gameboard.placeShip(new Ship(ship), {x: thisX, y: thisY}, mode);
             ship = returnNextShip();
-            label.innerHTML = renderMessage(ship, getShipSize(ship));
+            refreshLabel();
             renderBoard(HumanBoard, Human.gameboard);
             return false;
         })    

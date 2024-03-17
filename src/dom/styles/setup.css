@@ -15,3 +15,7 @@ main#setup-screen {
 .board .square.green-backdrop {
     background-color: greenyellow;
 }
+
+.error {
+    color: #dc2626;   
+}

@@ -37,18 +37,6 @@ HumanBoard.board.addEventListener('contextmenu', event => {
 
 refreshLabel();
 
-const renderBoard = (board, gameboard) => {
-    for (let y = 0; y < 10; y += 1) {
-        for (let x = 0; x < 10; x += 1) {
-            if (gameboard.isShipPresentAtSquare({x, y})) {
-                const thisY = y;
-                const thisX = x;
-                board.squares[thisY][thisX].classList.add('green-backdrop');
-            }
-        }
-    }
-}
-
 for (let y = 0; y < 10; y += 1) {
     for (let x = 0; x < 10; x += 1) {
         // eslint-disable-next-line no-loop-func
@@ -61,8 +49,13 @@ for (let y = 0; y < 10; y += 1) {
             }
             Human.gameboard.placeShip(new Ship(ship), {x: thisX, y: thisY}, mode);
             ship = returnNextShip();
+            if (!ship) {
+                Setup.callback();
+            }
             refreshLabel();
-            renderBoard(HumanBoard, Human.gameboard);
+            HumanBoard.render(Human.gameboard, {
+                shipPresent: 'green-backdrop'
+            });
             return false;
         })    
     }

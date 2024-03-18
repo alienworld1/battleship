@@ -3,11 +3,15 @@ import MainMenu from "./dom/mainmenu";
 import Setup from "./dom/setup";
 import Game from "./dom/game";
 
+import {Computer, shipList} from "./game-setup";
+
 const body = document.querySelector('body');
 
 const initalizeGame = () => {
     body.appendChild(Game);
     Game.renderHumanBoard();
+
+    Computer.setupBoard(shipList);
 }
 
 const initializeSetup = () => {

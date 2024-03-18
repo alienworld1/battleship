@@ -1,7 +1,7 @@
 import './styles/game.css';
 import Board from './board';
 
-import {Human} from '../game-setup';
+import {Human, Computer} from '../game-setup';
 
 const Game = document.createElement('main');
 Game.id = 'game-screen';
@@ -29,6 +29,13 @@ Game.renderHumanBoard = () => {
     HumanBoard.render(Human.gameboard, {
         shipPresent: 'green-backdrop',
     });    
+};
+
+// TODO: fix the render method 
+Game.renderComputerBoard = () => {
+    ComputerBoard.render(Computer.gameboard, {
+        shipPresent: '',
+    });
 };
 
 export default Game;

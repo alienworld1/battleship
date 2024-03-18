@@ -7,6 +7,7 @@ const body = document.querySelector('body');
 
 const initalizeGame = () => {
     body.appendChild(Game);
+    Game.renderHumanBoard();
 }
 
 const initializeSetup = () => {

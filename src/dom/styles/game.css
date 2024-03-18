@@ -2,3 +2,7 @@ main#game-screen {
     display: flex;
     gap: 48px;
 }
+
+.board .square.green-backdrop {
+    background-color: greenyellow !important;
+}

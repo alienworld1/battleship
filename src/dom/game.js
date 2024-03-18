@@ -1,6 +1,8 @@
 import './styles/game.css';
 import Board from './board';
 
+import {Human} from '../game-setup';
+
 const Game = document.createElement('main');
 Game.id = 'game-screen';
 
@@ -22,5 +24,11 @@ const ComputerBoard = new Board('computer-board');
 
 Game.appendChild(BoardComponent(HumanBoard.board, 'You'));
 Game.appendChild(BoardComponent(ComputerBoard.board, 'Computer'));
+
+Game.renderHumanBoard = () => {
+    HumanBoard.render(Human.gameboard, {
+        shipPresent: 'green-backdrop',
+    });    
+};
 
 export default Game;

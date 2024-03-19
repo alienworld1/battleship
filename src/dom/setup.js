@@ -37,29 +37,22 @@ HumanBoard.board.addEventListener('contextmenu', event => {
 
 refreshLabel();
 
-for (let y = 0; y < 10; y += 1) {
-    for (let x = 0; x < 10; x += 1) {
-        // eslint-disable-next-line no-loop-func
-        HumanBoard.squares[y][x].addEventListener('click', () => {
-            const thisY = y;
-            const thisX = x;
-            if (!Human.gameboard.canPlaceShip(getShipSize(ship), {x: thisX, y: thisY}, mode)) {
-                refreshLabel('Invalid placement');
-                return false;
-            }
-            Human.gameboard.placeShip(new Ship(ship), {x: thisX, y: thisY}, mode);
-            ship = returnNextShip();
-            if (!ship) {
-                Setup.callback();
-            }
-            refreshLabel();
-            HumanBoard.render(Human.gameboard, {
-                shipPresent: 'green-backdrop'
-            });
-            return false;
-        })    
+HumanBoard.triggerMethodOnClick((x, y) => {
+    if (!Human.gameboard.canPlaceShip(getShipSize(ship), {x, y}, mode)) {
+        refreshLabel('Invalid placement');
+        return false;
     }
-}
+    Human.gameboard.placeShip(new Ship(ship), {x, y}, mode);
+    ship = returnNextShip();
+    if (!ship) {
+        Setup.callback();
+    }
+    refreshLabel();
+    HumanBoard.render(Human.gameboard, {
+        shipPresent: 'green-backdrop'
+    });
+    return false;
+});
 
 Setup.appendChild(label);
 Setup.appendChild(HumanBoard.board);

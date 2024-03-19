@@ -58,4 +58,13 @@ export default class Board {
             }
         }    
     }
+
+    triggerMethodOnClick(method) {
+        for (let y = 0; y < 10; y += 1) {
+            for (let x = 0; x < 10; x += 1) {
+                // eslint-disable-next-line no-loop-func
+                this.squares[y][x].addEventListener('click', () => (method(x, y)));    
+            }
+        }        
+    }
 };

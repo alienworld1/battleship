@@ -50,12 +50,14 @@ export default class Board {
     render(gameboard, activeClasses) {
         for (let y = 0; y < 10; y += 1) {
             for (let x = 0; x < 10; x += 1) {
-                if (gameboard.isShipPresentAtSquare({x, y})) {
-                    const thisY = y;
-                    const thisX = x;
-                    this.#squares[thisY][thisX].classList.add(activeClasses.shipPresent);
+                if (activeClasses.shipPresent) {
+                    if (gameboard.isShipPresentAtSquare({x, y})) {
+                        const thisY = y;
+                        const thisX = x;
+                        this.#squares[thisY][thisX].classList.add(activeClasses.shipPresent);
+                    }    
                 }
-            }
+           }
         }    
     }
 

@@ -11,7 +11,8 @@ const initalizeGame = () => {
     body.appendChild(Game);
     Game.renderHumanBoard();
 
-    Computer.setupBoard(shipList);
+    Computer.setupBoard(shipList); 
+    Game.renderComputerBoard();
 }
 
 const initializeSetup = () => {

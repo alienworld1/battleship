@@ -31,11 +31,8 @@ Game.renderHumanBoard = () => {
     });    
 };
 
-// TODO: fix the render method 
 Game.renderComputerBoard = () => {
-    ComputerBoard.render(Computer.gameboard, {
-        shipPresent: '',
-    });
+    ComputerBoard.render(Computer.gameboard, {});
 };
 
 export default Game;

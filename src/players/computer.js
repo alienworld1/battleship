@@ -3,7 +3,7 @@ import Ship, {getShipSize} from "../modules/ship";
 
 const computer = new Player('computer');
 
-const randomNumber = () => Math.floor(Math.random() * 5);
+const randomNumber = () => Math.floor(Math.random() * 10);
 
 const attackedSquares = [];
 

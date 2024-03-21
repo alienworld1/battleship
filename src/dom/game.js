@@ -31,19 +31,25 @@ message.textContent = 'Click on an enemy square to attack it.';
 
 Game.appendChild(message);
 
-ComputerBoard.triggerMethodOnClick((x, y) => (
-    Computer.gameboard.receiveAttack({x, y})
-));
+ComputerBoard.triggerMethodOnClick((x, y) => {
+    const attackResult = Computer.gameboard.receiveAttack({x, y})
+    if (!attackResult) {
+        message.textContent = 'You didn\'t hit any ship!';
+        message.classList.add('red');
+    }
+    Game.renderComputerBoard();
+});
 
 Game.renderHumanBoard = () => {
     HumanBoard.render(Human.gameboard, {
-        shipPresent: 'green-backdrop',
+        shipPresent: 'green',
     });    
 };
 
 Game.renderComputerBoard = () => {
     ComputerBoard.render(Computer.gameboard, {
-        shipPresent: 'green-backdrop',
+        shipPresent: 'green',
+        missedSquares: 'red',
     });
 };
 

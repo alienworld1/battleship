@@ -48,9 +48,9 @@ export default class Board {
     }
 
     render(gameboard, activeClasses) {
-        for (let y = 0; y < 10; y += 1) {
-            for (let x = 0; x < 10; x += 1) {
-                if (activeClasses.shipPresent) {
+        if (activeClasses.shipPresent) {
+            for (let y = 0; y < 10; y += 1) {
+                for (let x = 0; x < 10; x += 1) {
                     if (gameboard.isShipPresentAtSquare({x, y})) {
                         const thisY = y;
                         const thisX = x;
@@ -58,7 +58,13 @@ export default class Board {
                     }    
                 }
            }
-        }    
+        }
+        
+        if (activeClasses.missedSquares) {
+            gameboard.missedHits().forEach(square => {
+                this.#squares[square.y][square.x].classList.add(activeClasses.missedSquares);
+            }, this)
+        }
     }
 
     triggerMethodOnClick(method) {

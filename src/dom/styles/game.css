@@ -5,10 +5,22 @@ main#game-screen {
     grid-template-rows: 2;
 }
 
-.board .square.green-backdrop {
-    background-color: greenyellow !important;
+.board .square.green {
+    background-color: #86efac !important;
 }
 
 main#game-screen > .message {
     grid-column: 1 / -1;
+}
+
+.message.red {
+    color: #ef4444;
+}
+
+.message.green {
+    color: #22c55e;
+}
+
+.board .square.red {
+    background-color: #fca5a5;
 }

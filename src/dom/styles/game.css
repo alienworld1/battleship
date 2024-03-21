@@ -1,8 +1,14 @@
 main#game-screen {
-    display: flex;
+    display: grid;
     gap: 48px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 2;
 }
 
 .board .square.green-backdrop {
     background-color: greenyellow !important;
+}
+
+main#game-screen > .message {
+    grid-column: 1 / -1;
 }

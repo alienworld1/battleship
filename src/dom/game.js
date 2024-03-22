@@ -2,15 +2,11 @@ import './styles/game.css';
 import Board from './board';
 
 import {Human, Computer} from '../game-setup';
-
 import { setGameReport } from '../report';
+import { removeEventListeners, timeoutPromise } from '../helpers';
 
 const Game = document.createElement('main');
 Game.id = 'game-screen';
-
-const removeEventListeners = element => {
-    element.replaceWith(element.cloneNode(true));
-}
 
 const BoardComponent = (board, label) => {
     const boardComponent = document.createElement('div');
@@ -38,6 +34,14 @@ message.textContent = 'Click on an enemy square to attack it.';
 const setMessageColor = color => {
     message.classList.remove('red', 'green');
     message.classList.add(color);
+}
+
+const playComputerMove = async () => {
+    await timeoutPromise(1000);
+    const move = Computer.playMove()
+    Human.gameboard.receiveAttack(move);
+    Game.renderHumanBoard();
+    setGameReport('currentTurn', 'Human');
 }
 
 const ComputerBoardManager = {
@@ -74,6 +78,8 @@ Game.appendChild(message);
 Game.renderHumanBoard = () => {
     HumanBoard.render(Human.gameboard, {
         shipPresent: 'green',
+        missedSquares: 'red',
+        hitSquares: 'gray',
     });    
 };
 
@@ -85,4 +91,4 @@ Game.renderComputerBoard = () => {
 };
 
 export default Game;
-export {ComputerBoardManager};
+export {ComputerBoardManager, playComputerMove};

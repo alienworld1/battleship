@@ -2,7 +2,7 @@ import "./style.css";
 import MainMenu from "./dom/mainmenu";
 import Setup from "./dom/setup";
 import gameEventEmitter from "./eventEmitter";
-import Game, {ComputerBoardManager} from "./dom/game";
+import Game, {ComputerBoardManager, playComputerMove} from "./dom/game";
 
 import {Computer, shipList} from "./game-setup";
 import { getGameReport } from "./report";
@@ -11,8 +11,11 @@ const body = document.querySelector('body');
 
 gameEventEmitter.addEventListener('update', () => {
     const report = getGameReport();
+
     if (report.currentTurn === 'Computer') {
         ComputerBoardManager.disable();
+        playComputerMove();
+        
     } else {
         ComputerBoardManager.enable();
     }

@@ -30,8 +30,8 @@ message.className = 'message';
 message.textContent = 'Click on an enemy square to attack it.';
 
 const setMessageColor = color => {
-    message.classList.remove();
-    message.classList.add('message', color);
+    message.classList.remove('red', 'green');
+    message.classList.add(color);
 }
 
 Game.appendChild(message);
@@ -41,6 +41,9 @@ ComputerBoard.triggerMethodOnClick((x, y) => {
     if (!attackResult) {
         message.textContent = 'You didn\'t hit any ship!';
         setMessageColor('red');
+    } else if (attackResult.isSunk()) {
+        message.textContent = `You sunk an enemy ${attackResult.name}!`;
+        setMessageColor('green');
     } else {
         message.textContent = 'You hit a ship!';
         setMessageColor('green');

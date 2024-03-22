@@ -1,13 +1,11 @@
 import Player from "../modules/player";
 import Ship, {getShipSize} from "../modules/ship";
 
+import { primeMultiply } from "../helpers";
+
 const computer = new Player('computer');
 
 const randomNumber = () => Math.floor(Math.random() * 10);
-
-const primeMultiply = (a, b) => (
-    (2 ** a) * (3 ** b)
-);
 
 const attackedSquares = [];
 

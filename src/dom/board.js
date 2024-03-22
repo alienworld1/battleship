@@ -1,4 +1,5 @@
 import './styles/board.css';
+import { primeMultiply } from '../helpers';
 
 export default class Board {
     #board;
@@ -76,14 +77,18 @@ export default class Board {
         
     }
 
-    triggerMethodOnClick(method) {
+    triggerMethodOnClick(method, exceptions = []) {
         this.#listeners = [];
         for (let y = 0; y < 10; y += 1) {
             for (let x = 0; x < 10; x += 1) {
                 // eslint-disable-next-line no-loop-func
-                const listener = () => method(x, y);
-                this.squares[y][x].addEventListener('click', listener);    
-                this.#listeners.push({x, y, listener});
+                if (!exceptions.includes(primeMultiply(x, y))) {
+                    const listener = () => method(x, y);
+                    this.squares[y][x].addEventListener('click', listener);    
+                    this.#listeners.push({x, y, listener});    
+                } else {
+                    this.squares[y][x].classList.add('not-allowed');
+                }
             }
         }        
     }

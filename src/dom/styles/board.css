@@ -11,3 +11,7 @@
     gap: 1px;
 }
 
+.square.not-allowed {
+    cursor: not-allowed;
+}
+

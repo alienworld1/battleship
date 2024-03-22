@@ -3,7 +3,9 @@ import Board from './board';
 
 import {Human, Computer} from '../game-setup';
 import { setGameReport } from '../report';
-import { timeoutPromise } from '../helpers';
+import { timeoutPromise, primeMultiply } from '../helpers';
+
+const attackedSquares = [];
 
 const Game = document.createElement('main');
 Game.id = 'game-screen';
@@ -73,8 +75,9 @@ const ComputerBoardManager = {
                 setMessageColor('green');
             }
             Game.renderComputerBoard();
+            attackedSquares.push(primeMultiply(x, y));
             setGameReport('currentTurn', 'Computer');
-        });        
+        }, attackedSquares);        
     }
 
 }

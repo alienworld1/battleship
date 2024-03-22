@@ -5,6 +5,8 @@ export default class Board {
 
     #squares;
 
+    #listeners = [];
+
     constructor(id) {
         this.#board = document.createElement('div');
         this.#board.classList.add('board');
@@ -75,11 +77,20 @@ export default class Board {
     }
 
     triggerMethodOnClick(method) {
+        this.#listeners = [];
         for (let y = 0; y < 10; y += 1) {
             for (let x = 0; x < 10; x += 1) {
                 // eslint-disable-next-line no-loop-func
-                this.squares[y][x].addEventListener('click', () => (method(x, y)));    
+                const listener = () => method(x, y);
+                this.squares[y][x].addEventListener('click', listener);    
+                this.#listeners.push({x, y, listener});
             }
         }        
+    }
+
+    clearEventListeners() {
+        this.#listeners.forEach(({x, y, listener}) => {
+            this.squares[y][x].removeEventListener('click', listener);
+        }, this);
     }
 };

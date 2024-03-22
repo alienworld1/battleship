@@ -15,7 +15,7 @@ gameEventEmitter.addEventListener('update', () => {
     if (report.currentTurn === 'Computer') {
         ComputerBoardManager.disable();
         playComputerMove();
-        
+
     } else {
         ComputerBoardManager.enable();
     }

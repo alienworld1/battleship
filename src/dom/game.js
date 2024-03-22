@@ -3,7 +3,7 @@ import Board from './board';
 
 import {Human, Computer} from '../game-setup';
 import { setGameReport } from '../report';
-import { removeEventListeners, timeoutPromise } from '../helpers';
+import { timeoutPromise } from '../helpers';
 
 const Game = document.createElement('main');
 Game.id = 'game-screen';
@@ -56,11 +56,7 @@ const playComputerMove = async () => {
 
 const ComputerBoardManager = {
     disable() {
-        for (let i = 0; i < 10; i += 1) {
-            for (let j = 0; j < 10; j += 1) {
-                removeEventListeners(ComputerBoard.squares.at(i).at(j));
-            }
-        }
+        ComputerBoard.clearEventListeners();
     },
 
     enable() {

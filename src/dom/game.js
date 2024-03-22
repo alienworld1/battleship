@@ -52,6 +52,9 @@ const playComputerMove = async () => {
         message.textContent = `Your ${attackResult.name} was hit!`;
         setMessageColor('green');
     }
+    if (Human.gameboard.allShipsHaveSunk()) {
+        setGameReport('allHumanShipsHaveSunk', true);
+    }
     Game.renderHumanBoard();
     setGameReport('currentTurn', 'Human');
 }
@@ -76,6 +79,11 @@ const ComputerBoardManager = {
             }
             Game.renderComputerBoard();
             attackedSquares.push(primeMultiply(x, y));
+
+            if (Computer.gameboard.allShipsHaveSunk()) {
+                setGameReport('allComputerShipsHaveSunk', true);
+            }
+
             setGameReport('currentTurn', 'Computer');
         }, attackedSquares);        
     }

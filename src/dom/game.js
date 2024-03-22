@@ -3,6 +3,8 @@ import Board from './board';
 
 import {Human, Computer} from '../game-setup';
 
+import { setGameReport } from '../report';
+
 const Game = document.createElement('main');
 Game.id = 'game-screen';
 
@@ -61,7 +63,7 @@ const ComputerBoardManager = {
                 setMessageColor('green');
             }
             Game.renderComputerBoard();
-            ComputerBoardManager.disable();
+            setGameReport('currentTurn', 'Computer');
         });        
     }
 

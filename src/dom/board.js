@@ -65,6 +65,13 @@ export default class Board {
                 this.#squares[square.y][square.x].classList.add(activeClasses.missedSquares);
             }, this)
         }
+
+        if (activeClasses.hitSquares) {
+            gameboard.attackedSquares().forEach(square => {
+                this.#squares[square.y][square.x].classList.add(activeClasses.hitSquares);
+            }, this)
+        }
+        
     }
 
     triggerMethodOnClick(method) {

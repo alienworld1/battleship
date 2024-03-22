@@ -29,13 +29,21 @@ const message = document.createElement('p');
 message.className = 'message';
 message.textContent = 'Click on an enemy square to attack it.';
 
+const setMessageColor = color => {
+    message.classList.remove();
+    message.classList.add('message', color);
+}
+
 Game.appendChild(message);
 
 ComputerBoard.triggerMethodOnClick((x, y) => {
     const attackResult = Computer.gameboard.receiveAttack({x, y})
     if (!attackResult) {
         message.textContent = 'You didn\'t hit any ship!';
-        message.classList.add('red');
+        setMessageColor('red');
+    } else {
+        message.textContent = 'You hit a ship!';
+        setMessageColor('green');
     }
     Game.renderComputerBoard();
 });
@@ -48,8 +56,8 @@ Game.renderHumanBoard = () => {
 
 Game.renderComputerBoard = () => {
     ComputerBoard.render(Computer.gameboard, {
-        shipPresent: 'green',
         missedSquares: 'red',
+        hitSquares: 'gray',
     });
 };
 

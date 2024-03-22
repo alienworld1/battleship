@@ -24,3 +24,7 @@ main#game-screen > .message {
 .board .square.red {
     background-color: #fca5a5;
 }
+
+.board .square.gray {
+    background-color: #6b7280;
+}

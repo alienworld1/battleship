@@ -13,7 +13,7 @@ main#setup-screen {
 }
 
 .board .square.green-backdrop {
-    background-color: greenyellow;
+    background-color: #86efac;
 }
 
 .error {

@@ -39,7 +39,17 @@ const setMessageColor = color => {
 const playComputerMove = async () => {
     await timeoutPromise(1000);
     const move = Computer.playMove()
-    Human.gameboard.receiveAttack(move);
+    const attackResult = Human.gameboard.receiveAttack(move);
+    if (!attackResult) {
+        message.textContent = 'None of your ships were hit!';
+        setMessageColor('red');
+    } else if (attackResult.isSunk()) {
+        message.textContent = `Your ${attackResult.name} has sunk!`;
+        setMessageColor('green');
+    } else {
+        message.textContent = `Your ${attackResult.name} was hit!`;
+        setMessageColor('green');
+    }
     Game.renderHumanBoard();
     setGameReport('currentTurn', 'Human');
 }

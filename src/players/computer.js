@@ -5,6 +5,10 @@ const computer = new Player('computer');
 
 const randomNumber = () => Math.floor(Math.random() * 10);
 
+const primeMultiply = (a, b) => (
+    (2 ** a) * (3 ** b)
+);
+
 const attackedSquares = [];
 
 const Computer = {
@@ -12,12 +16,13 @@ const Computer = {
     gameboard: computer.gameboard(),
 
     playMove: () => {
-        const x = randomNumber();
-        const y = randomNumber();
-        if (attackedSquares.some(square => JSON.stringify({x, y}) === JSON.stringify(square))) {
-            return this.playMove();
+        let x = randomNumber();
+        let y = randomNumber();
+        while (attackedSquares.includes(primeMultiply(x, y))) {
+            x = randomNumber();
+            y = randomNumber();
         }
-        attackedSquares.push({x, y});
+        attackedSquares.push(primeMultiply(x, y));
         return {x, y};
     },
 

@@ -6,6 +6,10 @@ import {Human, Computer} from '../game-setup';
 const Game = document.createElement('main');
 Game.id = 'game-screen';
 
+const removeEventListeners = element => {
+    element.replaceWith(element.cloneNode(true));
+}
+
 const BoardComponent = (board, label) => {
     const boardComponent = document.createElement('div');
     boardComponent.classList.add('board-component');
@@ -34,22 +38,36 @@ const setMessageColor = color => {
     message.classList.add(color);
 }
 
-Game.appendChild(message);
+const ComputerBoardManager = {
+    disable() {
+        for (let i = 0; i < 10; i += 1) {
+            for (let j = 0; j < 10; j += 1) {
+                removeEventListeners(ComputerBoard.squares.at(i).at(j));
+            }
+        }
+    },
 
-ComputerBoard.triggerMethodOnClick((x, y) => {
-    const attackResult = Computer.gameboard.receiveAttack({x, y})
-    if (!attackResult) {
-        message.textContent = 'You didn\'t hit any ship!';
-        setMessageColor('red');
-    } else if (attackResult.isSunk()) {
-        message.textContent = `You sunk an enemy ${attackResult.name}!`;
-        setMessageColor('green');
-    } else {
-        message.textContent = 'You hit a ship!';
-        setMessageColor('green');
+    enable() {
+        ComputerBoard.triggerMethodOnClick((x, y) => {
+            const attackResult = Computer.gameboard.receiveAttack({x, y})
+            if (!attackResult) {
+                message.textContent = 'You didn\'t hit any ship!';
+                setMessageColor('red');
+            } else if (attackResult.isSunk()) {
+                message.textContent = `You sunk an enemy ${attackResult.name}!`;
+                setMessageColor('green');
+            } else {
+                message.textContent = 'You hit a ship!';
+                setMessageColor('green');
+            }
+            Game.renderComputerBoard();
+            ComputerBoardManager.disable();
+        });        
     }
-    Game.renderComputerBoard();
-});
+
+}
+
+Game.appendChild(message);
 
 Game.renderHumanBoard = () => {
     HumanBoard.render(Human.gameboard, {
@@ -65,3 +83,4 @@ Game.renderComputerBoard = () => {
 };
 
 export default Game;
+export {ComputerBoardManager};

@@ -1,7 +1,7 @@
 import "./style.css";
 import MainMenu from "./dom/mainmenu";
 import Setup from "./dom/setup";
-import Game from "./dom/game";
+import Game, {ComputerBoardManager} from "./dom/game";
 
 import {Computer, shipList} from "./game-setup";
 
@@ -13,6 +13,8 @@ const initalizeGame = () => {
 
     Computer.setupBoard(shipList); 
     Game.renderComputerBoard();
+
+    ComputerBoardManager.enable();
 }
 
 const initializeSetup = () => {

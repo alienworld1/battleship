@@ -2,6 +2,7 @@ import "./style.css";
 import MainMenu from "./dom/mainmenu";
 import Setup from "./dom/setup";
 import gameEventEmitter from "./eventEmitter";
+import Dialog from "./dom/dialog";
 import Game, {ComputerBoardManager, playComputerMove} from "./dom/game";
 
 import {Computer, shipList} from "./game-setup";

@@ -1,0 +1,26 @@
+dialog {
+    margin: auto;
+    background-color: #451EAF;
+    text-align: center;
+    padding: 16px;
+    border-radius: 5px;
+    border-color: #eff6ff;
+}
+
+dialog > button {
+    background-color: #88AF1E;
+    border: none;
+    padding: 12px;
+    font-family: PressStart, sans-serif;
+    border-radius: 10px;
+    margin: 16px;
+    cursor: pointer;
+}
+
+dialog > button:hover {
+    background-color: #a3cb3d;
+}
+
+dialog > button:active {
+    background-color: #556d12;
+}
